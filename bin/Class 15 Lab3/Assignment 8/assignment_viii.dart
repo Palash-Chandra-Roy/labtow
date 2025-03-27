@@ -13,8 +13,33 @@ Expected Output:
 3
 2
 1
- */
+//  */
+ 
 
-void main(){
-  
+class Countdown extends Iterable<int >{
+    Iterator<int>get iterator =>_CountdownIterator(); 
+}
+
+class _CountdownIterator implements Iterator<int> {
+  int _current = 6; // Starts at 6 to decrement immediately
+
+  @override
+  bool moveNext() {
+    if (_current > 1) {
+      _current--;
+      return true;
+    }
+    return false;
+  }
+
+  @override
+  int get current => _current;
+}
+
+void main() {
+  var countdown = Countdown();
+
+  for (var number in countdown) {
+    print(number);
+  }
 }
